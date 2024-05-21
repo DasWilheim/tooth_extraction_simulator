@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://8q4oy6m6tg1v"]
+
+[ext_resource type="Theme" uid="uid://x4pg02i0bh2u" path="res://assets/theme.tres" id="1_1gcuw"]
+[ext_resource type="Script" path="res://scripts/Startscherm/Startscherm.gd" id="1_52ic4"]
+
+[node name="Control2" type="Control" node_paths=PackedStringArray("list", "loginButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1gcuw")
+script = ExtResource("1_52ic4")
+list = NodePath("VBoxContainer/ItemList")
+loginButton = NodePath("VBoxContainer/Button")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.5
+offset_top = -134.5
+offset_right = 328.5
+offset_bottom = 134.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1gcuw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_1gcuw")
+theme_override_font_sizes/normal_font_size = 40
+text = "Tooth removal trainer"
+fit_content = true
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_1gcuw")
+auto_height = true
+item_count = 5
+item_0/text = "Student"
+item_1/text = "Kaakchirurg in opleiding"
+item_2/text = "Tandarts"
+item_3/text = "Kaakchirurg"
+item_4/text = "Demo"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_1gcuw")
+theme_override_font_sizes/font_size = 40
+text = "Log in"
+icon_alignment = 1

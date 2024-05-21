@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://drtlcwie8j6jy"]
+
+[ext_resource type="Script" path="res://scripts/Show-extraction/Title.gd" id="1_waj4s"]
+[ext_resource type="Script" path="res://scripts/Show-extraction/show_extraction_info.gd" id="2_3aks3"]
+[ext_resource type="Script" path="res://scripts/Show-extraction/show_graphs.gd" id="3_n5m37"]
+[ext_resource type="Script" path="res://scripts/Common/SceneLoader.gd" id="3_tma3q"]
+[ext_resource type="Script" path="res://scripts/Show-extraction/Continue.gd" id="4_7wnru"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Title"
+horizontal_alignment = 1
+script = ExtResource("1_waj4s")
+
+[node name="Extraction info" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "info"
+script = ExtResource("2_3aks3")
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Show graphs"
+script = ExtResource("3_n5m37")
+
+[node name="Continue" type="Button" parent="." node_paths=PackedStringArray("backButton", "continueButton")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -198.0
+offset_top = -79.0
+offset_right = -119.0
+offset_bottom = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Next extraction"
+script = ExtResource("4_7wnru")
+backButton = NodePath("../Terug")
+continueButton = NodePath(".")
+sceneName = "pre-extraction.tscn"
+
+[node name="Terug" type="Button" parent="."]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 23.0
+offset_right = 94.0
+offset_bottom = 54.0
+text = "Back"
+script = ExtResource("3_tma3q")
+sceneName = "previous-extractions.tscn"

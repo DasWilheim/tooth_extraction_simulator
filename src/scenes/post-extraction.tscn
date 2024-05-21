@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://cui2wtfxc57i8"]
+
+[ext_resource type="Script" path="res://scripts/Post-extraction/Demo-user.gd" id="1_67xt4"]
+[ext_resource type="Script" path="res://scripts/Post-extraction/Post-extraction-continue.gd" id="1_77q5u"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JawSelection" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="JawSelection"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Complications" type="RichTextLabel" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+text = "Well done extracting the tooth!
+If there were any complications during the extraction, select them below."
+fit_content = true
+
+[node name="ForcepsSlipped" type="CheckBox" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+text = "Slipping of forceps"
+
+[node name="ElementFractured" type="CheckBox" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+text = "Fracture of element"
+
+[node name="Expoxy failed" type="CheckBox" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+text = "Expoxy failed / wasn't strong enough"
+
+[node name="Not representative" type="CheckBox" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+text = "Data is not representative / invalid. E.g a different person did the extraction."
+
+[node name="Complications2" type="RichTextLabel" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+text = "Other notes (optional)"
+fit_content = true
+
+[node name="PostExtractionNotes" type="TextEdit" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Notes"
+
+[node name="Label" type="Label" parent="JawSelection/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Using Demo user. Your exctraction won't be saved."
+script = ExtResource("1_67xt4")
+
+[node name="Continue" type="Button" parent="JawSelection/VBoxContainer" node_paths=PackedStringArray("forceps_slipped_checkbox", "element_fractured_checkbox", "expoxy_failed_checkbox", "non_representative_checkbox", "post_extraction_notes_field")]
+layout_mode = 2
+text = "Continue"
+script = ExtResource("1_77q5u")
+forceps_slipped_checkbox = NodePath("../ForcepsSlipped")
+element_fractured_checkbox = NodePath("../ElementFractured")
+expoxy_failed_checkbox = NodePath("../Expoxy failed")
+non_representative_checkbox = NodePath("../Not representative")
+post_extraction_notes_field = NodePath("../PostExtractionNotes")
