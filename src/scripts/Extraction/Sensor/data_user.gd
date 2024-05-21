@@ -168,6 +168,9 @@ func type_force_torque(kwadrant, _tand, force, torque):
 
 func _handle_client_data(force, torque):
 	# Compute the location of the tooth
+	Global.raw_forces.append(force)
+	Global.raw_torques.append(torque)
+	
 	var locatie = tand_locatie(Global.selectedQuadrant, Global.selectedTooth)
 	
 	# Calculate the rotation matrix

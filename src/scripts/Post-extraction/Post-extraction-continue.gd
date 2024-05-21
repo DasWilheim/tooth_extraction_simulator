@@ -29,8 +29,8 @@ func flatten_vector(vecs):
 
 func save_extraction_to_file():
 	var filename = generate_filename()
-	var fl_raw_forces = flatten_vector(Global.raw_forces)
-	var fl_raw_torques = flatten_vector(Global.raw_torques)
+	var fl_raw_forces = flatten_vector(Global.corrected_forces)
+	var fl_raw_torques = flatten_vector(Global.corrected_torques)
 
 	# Apply negation to each element in the y and z components of the torques
 	var negated_forces_y = fl_raw_forces[2].map(func(x): return -x)
@@ -53,11 +53,13 @@ func save_extraction_to_file():
 
 		# Force data split by axis
 		"raw_forces_x": fl_raw_forces[0],
-		"raw_forces_y": negated_forces_y,
-		"raw_forces_z": fl_raw_forces[1],
+		"raw_forces_y": fl_raw_forces[1],
+		"raw_forces_z": fl_raw_forces[2],
 		"raw_torques_x": fl_raw_torques[0],
-		"raw_torques_y": negated_torques_y,
-		"raw_torques_z": negated_torques_z,
+		"raw_torques_y": fl_raw_torques[1],
+		"raw_torques_z": fl_raw_torques[2],
+		
+		
 	}
 	
 	Global.extractionDict = extraction_data
