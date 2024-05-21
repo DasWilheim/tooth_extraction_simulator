@@ -25,7 +25,7 @@ func _ready():
 	Bar2.position.y = 16.5
 	Bar3.position.x = 176
 	Bar3.position.y = 16.5
-	barX.position.x = 0  # Initial position for the new slider
+	barX.position.x = 176  # Initial position for the new slider
 	barX.position.y = 16.5
 	
 func _process(_delta):

@@ -189,12 +189,12 @@ premolar_3d = NodePath("premolar")
 
 [node name="molar" type="MeshInstance3D" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/3D box container/Node3D/CSGBox3D2"]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0.214994, -0.363556, 0.0715685)
+visible = false
 mesh = ExtResource("8_yf5s0")
 skeleton = NodePath("../..")
 
 [node name="incisor" type="MeshInstance3D" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/3D box container/Node3D/CSGBox3D2"]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, -0.0893723, -0.363556, 0.0715685)
-visible = false
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
 mesh = ExtResource("9_3iqj8")
 skeleton = NodePath("../..")
 
@@ -317,6 +317,13 @@ visible = false
 position = Vector2(179, 17.5)
 texture = ExtResource("9_yqw6e")
 
+[node name="M_D" type="RichTextLabel" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/Axis 2/VBoxContainer"]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+text = "Distal                                -                           Mesial"
+fit_content = true
+scroll_active = false
+
 [node name="Bar3" type="TextureRect" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/Axis 2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -327,10 +334,10 @@ texture = ExtResource("8_0om6e")
 position = Vector2(179, 17.5)
 texture = ExtResource("9_yqw6e")
 
-[node name="M_D" type="RichTextLabel" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/Axis 2/VBoxContainer"]
+[node name="M_D2" type="RichTextLabel" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/Axis 2/VBoxContainer"]
 custom_minimum_size = Vector2(10, 20)
 layout_mode = 2
-text = "Distal                                -                           Mesial"
+text = "Forces in y direction"
 fit_content = true
 scroll_active = false
 
@@ -374,6 +381,13 @@ texture = ExtResource("8_0om6e")
 position = Vector2(179, 16.5)
 texture = ExtResource("9_yqw6e")
 
+[node name="M_L & E_I2" type="RichTextLabel" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/Axis 3/VBoxContainer"]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+text = "Intrusion                         -                       Extrusion"
+fit_content = true
+scroll_active = false
+
 [node name="Bar4" type="TextureRect" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/Axis 3/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -387,7 +401,7 @@ texture = ExtResource("9_yqw6e")
 [node name="M_L & E_I" type="RichTextLabel" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/Axis 3/VBoxContainer"]
 custom_minimum_size = Vector2(10, 20)
 layout_mode = 2
-text = "Intrusion                         -                       Extrusion"
+text = "Forces in z direction"
 fit_content = true
 scroll_active = false
 

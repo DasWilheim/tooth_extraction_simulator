@@ -106,12 +106,14 @@ var angles = [
 
 
 # Transform a vector using a Basis matrix manually
-func transform_vector(matrix, vector):
+# Transform a vector using a Basis matrix manually
+func transform_vector(matrix: Basis, vector: Vector3) -> Vector3:
 	return Vector3(
-		matrix.elements[0].dot(vector),
-		matrix.elements[1].dot(vector),
-		matrix.elements[2].dot(vector)
+		matrix.x.dot(vector),
+		matrix.y.dot(vector),
+		matrix.z.dot(vector)
 	)
+
 
 # This function returns a given vector expressed in the tooth frame for a given kwadrand and tooth number.
 func vector_tand_frame(kwadrant, tand, vector):
@@ -172,9 +174,11 @@ func _handle_client_data(force, torque):
 	var rotation_matrix = calculate_rotation_matrix(Global.selectedQuadrant, Global.selectedTooth)
 	
 	# Rotate force and torque vectors manually
-	#force = transform_vector(rotation_matrix, force)
-	#torque = convert_torque(torque, force, locatie)
-	#torque = transform_vector(rotation_matrix, torque)
+	torque = convert_torque(torque, force, locatie)
+	torque = transform_vector(rotation_matrix, torque)
+	
+
+	force = transform_vector(rotation_matrix, force)
 	
 	# Store the corrected forces and torques
 	Global.corrected_forces.append(force)
@@ -205,25 +209,25 @@ func _handle_client_data(force, torque):
 	
 	# the following if statements relate to the translation of the forces and torques into movement of the 3d tooth model.
 	if Global.selectedQuadrant == 1 or Global.selectedQuadrant == 2:
-		transform.origin.x = avg_force.x * 10
-		transform.origin.y = avg_force.y * 10
-		transform.origin.z = avg_force.z * 10
+		transform.origin.x = avg_force.x * 2
+		transform.origin.y = avg_force.z * 2
+		transform.origin.z = - avg_force.y * 2
 
 		var rot: Transform3D = Transform3D.IDENTITY
-		rot = rot.rotated(Vector3( 1, 0, 0 ), avg_torque.x) * 3
-		rot = rot.rotated(Vector3( 0, 1, 0 ), avg_torque.y) * 3
-		rot = rot.rotated(Vector3( 0, 0, 1 ), avg_torque.z) * 3
+		rot = rot.rotated(Vector3( 1, 0, 0 ), avg_torque.x * 3)
+		rot = rot.rotated(Vector3( 0, 1, 0 ), avg_torque.z * 3)
+		rot = rot.rotated(Vector3( 0, 0, 1 ), - avg_torque.y * 3) 
 		transform.basis = rot.basis
 	
 	if Global.selectedQuadrant == 3 or Global.selectedQuadrant == 4:
-		transform.origin.x = avg_force.x * 10
-		transform.origin.y = avg_force.y * 10
-		transform.origin.z = avg_force.z * 10
+		transform.origin.x = avg_force.x   * 2 # these translations are done purely because of the axis of the 3D file. 
+		transform.origin.y = avg_force.z   * 2
+		transform.origin.z = - avg_force.y   * 2
 
 		var rot: Transform3D = Transform3D.IDENTITY
-		rot = rot.rotated(Vector3( 1, 0, 0 ), avg_torque.x) * 3
-		rot = rot.rotated(Vector3( 0, 1, 0 ), avg_torque.y) * 3
-		rot = rot.rotated(Vector3( 0, 0, 1 ), avg_torque.z) * 3 
+		rot = rot.rotated(Vector3( 1, 0, 0 ), avg_torque.x * 3) 
+		rot = rot.rotated(Vector3( 0, 1, 0 ), avg_torque.z * 3) 
+		rot = rot.rotated(Vector3( 0, 0, 1 ), - avg_torque.y * 3) 
 		transform.basis = rot.basis
 
 func _handle_client_disconnected() -> void:
