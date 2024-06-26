@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c4vbxhjh7m7h6"]
+[gd_scene load_steps=28 format=3 uid="uid://c4vbxhjh7m7h6"]
 
 [ext_resource type="Script" path="res://scripts/Extraction/Sensor/data_user.gd" id="1_vu16l"]
 [ext_resource type="PackedScene" uid="uid://cto4jgqgmwgrd" path="res://scenes/Togglebutton.tscn" id="2_llarb"]
@@ -22,6 +22,9 @@
 [ext_resource type="Texture2D" uid="uid://jn2edbaf0g6y" path="res://assets/Figures/connected.svg" id="12_rh6w6"]
 [ext_resource type="Texture2D" uid="uid://bxtjqe348c13g" path="res://assets/Figures/disconnected.svg" id="13_t2tbb"]
 [ext_resource type="Script" path="res://scripts/Extraction/Extraction_finished.gd" id="14_i783s"]
+[ext_resource type="Script" path="res://scripts/Extraction/Sensor/calibrate_check.gd" id="14_xilar"]
+[ext_resource type="AudioStream" uid="uid://csheyraum5vq6" path="res://assets/audio/Mario Death - QuickSounds.com.mp3" id="15_hniqu"]
+[ext_resource type="AudioStream" uid="uid://g10ietrwc40p" path="res://assets/audio/103227_zorrodg_contador- (mp3cut.net).mp3" id="16_udveu"]
 [ext_resource type="Theme" uid="uid://x4pg02i0bh2u" path="res://assets/theme.tres" id="17_elugr"]
 [ext_resource type="Script" path="res://scripts/Extraction/Terug.gd" id="23_5e3ct"]
 
@@ -209,6 +212,15 @@ transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, -8.74228e-08, 4.37114e-0
 visible = false
 mesh = ExtResource("11_yu6q1")
 skeleton = NodePath("../..")
+
+[node name="check_calibration" type="Node" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/3D box container/Node3D/CSGBox3D2"]
+script = ExtResource("14_xilar")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/3D box container/Node3D/CSGBox3D2/check_calibration"]
+stream = ExtResource("15_hniqu")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/3D box container/Node3D/CSGBox3D2/check_calibration"]
+stream = ExtResource("16_udveu")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/3D box container/Node3D"]
 transform = Transform3D(-0.022199, -0.788643, 0.61445, -9.77091e-09, 0.614602, 0.788838, -0.999754, 0.0175114, -0.0136435, -7.39606, 5.13621, 2.08942)

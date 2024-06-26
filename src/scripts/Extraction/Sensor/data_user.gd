@@ -12,6 +12,7 @@ signal connected
 signal disconnected
 signal data
 signal directions
+signal new_data
 
 @export var molar_3d : MeshInstance3D
 @export var incisor_3d : MeshInstance3D
@@ -165,11 +166,14 @@ func type_force_torque(kwadrant, _tand, force, torque):
 	return result
 
 # this function combines all the previous functions to process the raw sensor data into usable data
-
 func _handle_client_data(force, torque):
 	# Compute the location of the tooth
 	Global.raw_forces.append(force)
 	Global.raw_torques.append(torque)
+	
+	# Emit signal to process new data
+	emit_signal("new_data", force, torque)
+	
 	
 	var locatie = tand_locatie(Global.selectedQuadrant, Global.selectedTooth)
 	
