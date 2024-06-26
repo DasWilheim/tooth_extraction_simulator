@@ -31,7 +31,7 @@ func consume_data_point():
 	var Tz = _stream.get_double()
 	
 	# Translate the axis from sensor definition to godot
-	var force = Vector3(Fx, Fy, Fz)  #WILFIX why is the fy and Ty negative here?
+	var force = Vector3(Fx, Fy, Fz) 
 	var torque = Vector3(Tx, Ty, Tz)
 	# Check for read error.
 	if length[0] != OK:
