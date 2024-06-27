@@ -5,7 +5,7 @@ signal new_data(force: Vector3, torque: Vector3)
 
 var force_values: Array = []
 var torque_values: Array = []
-const NUM_STANDARD_VALUES: int = 10
+const NUM_STANDARD_VALUES: int = 100
 
 var itterations: int = 0
 
@@ -45,8 +45,9 @@ func _on_new_data_received(force: Vector3, torque: Vector3) -> void:
 			print("Standard values set: avg_force =", standard_avg_force, " avg_torque =", standard_avg_torque)
 	else:
 		# Check if the new values exceed the standard values
-		if (exceeds_threshold(force, standard_avg_force, Vector3(1, 1, 2)) or exceeds_threshold(torque, standard_avg_torque, Vector3(1, 1, 2))) and checking and itterations < 2000:
+		if (exceeds_threshold(force, standard_avg_force, Vector3(2, 2, 3)) or exceeds_threshold(torque, standard_avg_torque, Vector3(1, 1, 2))) and checking and itterations < 1300:
 			print("exceed")
+			start_player.stop()
 			error_player.play() 
 			checking = false
 			

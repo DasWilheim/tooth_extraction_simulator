@@ -31,6 +31,7 @@ func _ready() -> void:
 
 	var t = Global.selectedTooth
 	molar_3d.visible = false
+	incisor_3d.visible = false
 	if t == 1 or t == 2:
 		incisor_3d.visible = true
 	elif t == 3:
