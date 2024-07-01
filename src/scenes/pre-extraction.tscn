@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://mmv6hywavm50"]
+[gd_scene load_steps=8 format=3 uid="uid://mmv6hywavm50"]
 
 [ext_resource type="Script" path="res://scripts/Pre-extraction/SelectedTooth.gd" id="1_tjn70"]
 [ext_resource type="Script" path="res://scripts/Pre-extraction/TypeList.gd" id="2_1glcj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/Pre-extraction/Pre-extraction-continue.gd" id="2_hqstp"]
 [ext_resource type="Script" path="res://scripts/Pre-extraction/QuadrantList.gd" id="2_uttav"]
 [ext_resource type="Script" path="res://scripts/Pre-extraction/Terug.gd" id="3_gbpns"]
+[ext_resource type="Script" path="res://scenes/ToothList.gd" id="3_o0ls8"]
 
 [node name="Control3" type="Control"]
 layout_mode = 3
@@ -77,6 +78,7 @@ item_4/text = "5 (premolaar)"
 item_5/text = "6 (molaar)"
 item_6/text = "7 (molaar)"
 item_7/text = "8 (molaar)"
+script = ExtResource("3_o0ls8")
 
 [node name="Type" type="RichTextLabel" parent="JawSelection/VBoxContainer"]
 layout_mode = 2

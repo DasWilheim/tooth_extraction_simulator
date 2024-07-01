@@ -5,6 +5,9 @@ extends "res://scripts/Common/SceneLoader.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("continue.gd")
+	print(Global.selectedTooth)
+	print(Global.selectedQuadrant)
 	super._ready()
 	if Global.fromExtraction:
 		backButton.visible = false

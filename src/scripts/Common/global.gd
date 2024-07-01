@@ -88,8 +88,8 @@ func reset_extraction_data():
 	endTimestamp = -1 # end of extraction
 	
 	# Don't reset the selected tooth in automatic extraction mode
-	if mode != MODE.automaticExtraction:
-		selectedTooth = null
+	# if mode != MODE.automaticExtraction:
+	# 	selectedTooth = null
 		
 	forceps_slipped = null
 	element_fractured = null

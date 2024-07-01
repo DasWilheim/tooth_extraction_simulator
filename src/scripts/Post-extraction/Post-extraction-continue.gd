@@ -7,6 +7,8 @@ extends Button
 @export var post_extraction_notes_field : TextEdit 
 
 func generate_filename():
+
+	
 	var filename = Time.get_datetime_string_from_system() + "-" + str(Global.selectedQuadrant) +  str(Global.selectedTooth) 
 	var i = 0
 	for c in filename:
@@ -100,6 +102,9 @@ func _pressed():
 		Global.goto_scene("res://scenes/automatic-tooth-selector.tscn")
 	else:
 		if Global.loggedInAs != "Demo":
-			Global.goto_scene("res://scenes/show_extraction.tscn")
+			print("post-extraction-continue.gd")
+			print(Global.selectedTooth)
+			print(Global.selectedQuadrant)
+			Global.goto_scene("res://scenes/pre-extraction.tscn")
 		else:
 			Global.goto_scene("res://scenes/dashboard.tscn")
