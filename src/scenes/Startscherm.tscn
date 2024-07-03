@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://x4pg02i0bh2u" path="res://assets/theme.tres" id="1_1gcuw"]
 [ext_resource type="Script" path="res://scripts/Startscherm/Startscherm.gd" id="1_52ic4"]
 
-[node name="Control2" type="Control" node_paths=PackedStringArray("list", "loginButton")]
+[node name="Control2" type="Control" node_paths=PackedStringArray("list", "loginButton", "participantName")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +14,7 @@ theme = ExtResource("1_1gcuw")
 script = ExtResource("1_52ic4")
 list = NodePath("VBoxContainer/ItemList")
 loginButton = NodePath("VBoxContainer/Button")
+participantName = NodePath("VBoxContainer/participantText")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -47,6 +48,11 @@ item_1/text = "Kaakchirurg in opleiding"
 item_2/text = "Tandarts"
 item_3/text = "Kaakchirurg"
 item_4/text = "Demo"
+
+[node name="participantText" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+placeholder_text = "The name of the participant (for storage)"
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2

@@ -14,6 +14,8 @@ var mode = MODE.nomode
 
 # Data requested before extraction
 var loggedInAs = "Unknown"
+var participantName = "Unkown"
+var folderName = "Unkown"
 var selectedQuadrant = null
 var selectedTooth = null
 var selectedType = null
@@ -76,6 +78,9 @@ func _deferred_goto_scene(path):
 
 	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
 	get_tree().current_scene = current_scene
+	
+	
+	
 
 func reset_extraction_data():
 	raw_forces = []

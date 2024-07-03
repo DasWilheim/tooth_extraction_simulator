@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4jjsnp0drou3"]
+
+[ext_resource type="Script" path="res://scripts/Post-extraction/Demo-user.gd" id="1_h56qm"]
+[ext_resource type="Script" path="res://scripts/Post-extraction/post-jaw-continue.gd" id="2_jg12w"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JawSelection" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="JawSelection"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Complications" type="RichTextLabel" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+text = "Done with the entire Jaw"
+fit_content = true
+
+[node name="Expoxy failed" type="CheckBox" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+text = "Expoxy failed / wasn't strong enough over the entire jaw"
+
+[node name="Not representative" type="CheckBox" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+text = "Data is not representative / invalid. Participant was not foccussing"
+
+[node name="Complications2" type="RichTextLabel" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+text = "Other notes (optional)"
+fit_content = true
+
+[node name="PostExtractionNotes" type="TextEdit" parent="JawSelection/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Notes"
+
+[node name="Label" type="Label" parent="JawSelection/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Using Demo user. Your exctraction won't be saved."
+script = ExtResource("1_h56qm")
+
+[node name="Continue" type="Button" parent="JawSelection/VBoxContainer" node_paths=PackedStringArray("expoxy_failed_checkbox", "non_representative_checkbox", "post_extraction_notes_field")]
+layout_mode = 2
+text = "Continue"
+script = ExtResource("2_jg12w")
+expoxy_failed_checkbox = NodePath("../Expoxy failed")
+non_representative_checkbox = NodePath("../Not representative")
+post_extraction_notes_field = NodePath("../PostExtractionNotes")

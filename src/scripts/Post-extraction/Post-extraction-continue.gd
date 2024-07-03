@@ -7,8 +7,6 @@ extends Button
 @export var post_extraction_notes_field : TextEdit 
 
 func generate_filename():
-
-	
 	var filename = Time.get_datetime_string_from_system() + "-" + str(Global.selectedQuadrant) +  str(Global.selectedTooth) 
 	var i = 0
 	for c in filename:
@@ -16,6 +14,28 @@ func generate_filename():
 			filename[i] = ';'
 		i += 1
 	return filename
+	
+func replace_double_dot(string):
+		var i = 0
+		for c in string:
+			if c == ':':
+				string[i] = ';'
+			i += 1
+		return string
+
+
+# Function to create directory and handle errors
+func create_directory(path):
+	var dir = DirAccess.open("user://")
+	if dir:
+		var err = dir.make_dir_recursive(path)
+		if err != OK:
+			print("Could not create directory: " + path)
+			return false
+	else:
+		print("Could not open base directory: user://")
+		return false
+	return true
 
 func flatten_vector(vecs):
 	var xs = []
@@ -68,19 +88,36 @@ func save_extraction_to_file():
 		"corrected_torques_x": fl_corrected_torques[0],
 		"corrected_torques_y": fl_corrected_torques[1],
 		"corrected_torques_z": fl_corrected_torques[2]
-		
-		
 	}
-	
+
 	Global.extractionDict = extraction_data
 	var json_data = JSON.stringify(extraction_data, "\t")
-	
-	# Stores file in user data directory 
-	# see https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html#doc-data-paths
-	var filepath = "user://extraction_data_"+filename+".json"
+
+	# Ensure the subfolder structure exists
+	var participant_subfolder = "user://" + Global.participantName + "/"
+
+	var folder_subfolder = participant_subfolder + Global.folderName + "/"
+
+	# Create participant and folder subdirectories
+	if not create_directory(participant_subfolder):
+		return ""
+	if not create_directory(folder_subfolder):
+		return ""
+
+	# Define the file path
+	var filepath = folder_subfolder + "extraction_data_" + filename + ".json"
+
+	# Open the file and store the data
 	var save_file = FileAccess.open(filepath, FileAccess.WRITE)
-	save_file.store_line(json_data)
-	return "extraction_data_"+filename+".json"
+	if save_file:
+		save_file.store_line(json_data)
+		save_file.close()  # Don't forget to close the file
+
+		# Return the relative path to the saved file
+		return Global.participantName + "/" + Global.folderName + "/extraction_data_" + filename + ".json"
+	else:
+		print("Failed to open file: " + filepath)
+		return ""
 
 # Called when the node enters the scene tree for the first time.
 func _pressed():
@@ -102,9 +139,9 @@ func _pressed():
 		Global.goto_scene("res://scenes/automatic-tooth-selector.tscn")
 	else:
 		if Global.loggedInAs != "Demo":
-			print("post-extraction-continue.gd")
-			print(Global.selectedTooth)
-			print(Global.selectedQuadrant)
-			Global.goto_scene("res://scenes/pre-extraction.tscn")
+			if Global.selectedTooth == 1 and (Global.selectedQuadrant == 1 or Global.selectedQuadrant == 3):
+				Global.goto_scene("res://scenes/post-jaw.tscn")
+			else:	
+				Global.goto_scene("res://scenes/pre-extraction.tscn")
 		else:
 			Global.goto_scene("res://scenes/dashboard.tscn")

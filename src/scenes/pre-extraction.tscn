@@ -122,6 +122,7 @@ theme = ExtResource("2_5gwdb")
 text = "Back to dashboard"
 script = ExtResource("3_gbpns")
 
+[connection signal="item_selected" from="JawSelection/VBoxContainer/QuadrantList" to="JawSelection/VBoxContainer/QuadrantList" method="_on_item_selected"]
 [connection signal="item_selected" from="JawSelection/VBoxContainer/QuadrantList" to="JawSelection/VBoxContainer/SelectedTooth" method="quadrantChanged"]
 [connection signal="ready" from="JawSelection/VBoxContainer/QuadrantList" to="JawSelection/VBoxContainer/QuadrantList" method="_on_ready"]
 [connection signal="item_selected" from="JawSelection/VBoxContainer/ToothList" to="JawSelection/VBoxContainer/SelectedTooth" method="toothChanged"]
