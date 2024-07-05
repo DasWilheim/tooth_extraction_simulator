@@ -268,7 +268,8 @@ texture = ExtResource("9_yqw6e")
 [node name="B_L" type="RichTextLabel" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/Axis 1/VBoxContainer"]
 custom_minimum_size = Vector2(10, 20)
 layout_mode = 2
-text = "lingual                              -                            buccal"
+text = " lingual                             -                            buccal
+Torque around y"
 fit_content = true
 scroll_active = false
 
@@ -332,7 +333,8 @@ texture = ExtResource("9_yqw6e")
 [node name="M_D" type="RichTextLabel" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/Axis 2/VBoxContainer"]
 custom_minimum_size = Vector2(10, 20)
 layout_mode = 2
-text = "Distal                                -                           Mesial"
+text = "Mesial                              -                              Distal
+Torque around x"
 fit_content = true
 scroll_active = false
 
@@ -396,7 +398,8 @@ texture = ExtResource("9_yqw6e")
 [node name="M_L & E_I2" type="RichTextLabel" parent="VBoxContainer/Body/VBoxContainer/PanelContainer/GridContainer/Axis 3/VBoxContainer"]
 custom_minimum_size = Vector2(10, 20)
 layout_mode = 2
-text = "Intrusion                         -                       Extrusion"
+text = "Molar-Incisor                  -               Incisor-Molar
+Torque around z"
 fit_content = true
 scroll_active = false
 

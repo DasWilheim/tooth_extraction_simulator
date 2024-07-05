@@ -65,118 +65,73 @@ func _process(_delta):
 	var max_force_z = 20
 
 	if Global.selectedQuadrant != null and Global.selectedTooth != null:
-		if Global.selectedQuadrant == 1 or Global.selectedQuadrant == 2:
-			
-			var force_b_l = Global.get_avg_force(n).y
-			var weight_pos_b_l = (force_b_l - min_force_b_l) / (max_force_b_l - min_force_b_l)
-			var D_position_b_l = lerp(min_position_x, max_position_x, weight_pos_b_l)
-			Bar1.position.x = clamp(D_position_b_l, min_position_x, max_position_x)
-			
-			var force_e_i = Global.get_avg_force(n).x
-			var weight_pos_e_i = (force_e_i - min_force_e_i) / (max_force_e_i - min_force_e_i)
-			var D_position_e_i = lerp(min_position_x, max_position_x, weight_pos_e_i)
-			Bar3.position.x = clamp(D_position_e_i, min_position_x, max_position_x)
-
-			var torque_b_l = Global.get_avg_torque(n).z
+		if Global.selectedQuadrant == 1 or Global.selectedQuadrant == 3:
+	
+			var torque_b_l =  Global.get_avg_torque(n).y 
 			var weight_rot_b_l = (torque_b_l - min_torque_b_l) / (max_torque_b_l - min_torque_b_l)
 			var D_rotation_b_l = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_b_l)
 			Needle_1.rotation_degrees = clamp(D_rotation_b_l, min_rotation_degrees, max_rotation_degrees)
+
+			var torque_m_d = - Global.get_avg_torque(n).x   
+			var weight_rot_m_d = (torque_m_d - min_torque_m_d) / (max_torque_m_d - min_torque_m_d)
+			var D_rotation_m_d = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_d)
+			Needle_2.rotation_degrees = clamp(D_rotation_m_d, min_rotation_degrees, max_rotation_degrees)
 			
-			if Global.selectedQuadrant == 1:
-				var force_m_d = -Global.get_avg_force(n).z
-				var weight_pos_m_d = (force_m_d - min_force_m_d) / (max_force_m_d - min_force_m_d)
-				var D_position_m_d = lerp(min_position_x, max_position_x, weight_pos_m_d)
-				Bar2.position.x = clamp(D_position_m_d, min_position_x, max_position_x)
-
-				var torque_m_d = Global.get_avg_torque(n).y
-				var weight_rot_m_d = (torque_m_d - min_torque_m_d) / (max_torque_m_d - min_torque_m_d)
-				var D_rotation_m_d = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_d)
-				Needle_2.rotation_degrees = clamp(D_rotation_m_d, min_rotation_degrees, max_rotation_degrees)
-				
-				var torque_m_l = Global.get_avg_torque(n).x
-				var weight_rot_m_l = (torque_m_l - min_torque_m_l) / (max_torque_m_l - min_torque_m_l)
-				var D_rotation_m_l = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_l)
-				Needle_3.rotation_degrees = clamp(D_rotation_m_l, min_rotation_degrees, max_rotation_degrees)
-				
-			if Global.selectedQuadrant == 2:
-				var force_m_d = Global.get_avg_force(n).z
-				var weight_pos_m_d = (force_m_d - min_force_m_d) / (max_force_m_d - min_force_m_d)
-				var D_position_m_d = lerp(min_position_x, max_position_x, weight_pos_m_d)
-				Bar2.position.x = clamp(D_position_m_d, min_position_x, max_position_x)
-				
-				var torque_m_d = -Global.get_avg_torque(n).y
-				var weight_rot_m_d = (torque_m_d - min_torque_m_d) / (max_torque_m_d - min_torque_m_d)
-				var D_rotation_m_d = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_d)
-				Needle_2.rotation_degrees = clamp(D_rotation_m_d, min_rotation_degrees, max_rotation_degrees)
-				
-				var torque_m_l = -Global.get_avg_torque(n).x
-				var weight_rot_m_l = (torque_m_l - min_torque_m_l) / (max_torque_m_l - min_torque_m_l)
-				var D_rotation_m_l = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_l)
-				Needle_3.rotation_degrees = clamp(D_rotation_m_l, min_rotation_degrees, max_rotation_degrees)
-
-		if Global.selectedQuadrant == 3 or Global.selectedQuadrant == 4:
-			var force_b_l = Global.get_avg_force(n).x
-			var weight_pos_b_l = (force_b_l - min_force_b_l) / (max_force_b_l - min_force_b_l)
-			var D_position_b_l = lerp(min_position_x, max_position_x, weight_pos_b_l)
-			Bar1.position.x = clamp(D_position_b_l, min_position_x, max_position_x)
+			var torque_m_l = - Global.get_avg_torque(n).z  
+			var weight_rot_m_l = (torque_m_l - min_torque_m_l) / (max_torque_m_l - min_torque_m_l)
+			var D_rotation_m_l = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_l)
+			Needle_3.rotation_degrees = clamp(D_rotation_m_l, min_rotation_degrees, max_rotation_degrees)	
 			
-			var force_e_i = Global.get_avg_force(n).y
-			var weight_pos_e_i = (force_e_i - min_force_e_i) / (max_force_e_i - min_force_e_i)
-			var D_position_e_i = lerp(min_position_x, max_position_x, weight_pos_e_i)
-			Bar3.position.x = clamp(D_position_e_i, min_position_x, max_position_x)
+			var force_x = Global.get_avg_force(n).x
+			var weight_pos_x = (force_x - min_force_x) / (max_force_x - min_force_x)
+			var D_position_x = lerp(min_position_x, max_position_x, weight_pos_x)
+			barX.position.x = clamp(D_position_x, min_position_x, max_position_x)
 
-			var torque_b_l = -Global.get_avg_torque(n).z
+			var force_y = - Global.get_avg_force(n).y
+			var weight_pos_y = (force_y - min_force_y) / (max_force_y - min_force_y)
+			var D_position_y = lerp(min_position_x, max_position_x, weight_pos_y)
+			barY.position.x = clamp(D_position_y, min_position_x, max_position_x)
+			
+			# Update the new bar slider based on force in z direction
+			var force_z = Global.get_avg_force(n).z
+			var weight_pos_z = (force_z - min_force_z) / (max_force_z - min_force_z)
+			var D_position_z = lerp(min_position_x, max_position_x, weight_pos_z)
+			barZ.position.x = clamp(D_position_z, min_position_x, max_position_x)
+		
+	
+
+		
+		if Global.selectedQuadrant == 2 or Global.selectedQuadrant == 4:
+	
+			var torque_b_l =   Global.get_avg_torque(n).y  
 			var weight_rot_b_l = (torque_b_l - min_torque_b_l) / (max_torque_b_l - min_torque_b_l)
 			var D_rotation_b_l = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_b_l)
 			Needle_1.rotation_degrees = clamp(D_rotation_b_l, min_rotation_degrees, max_rotation_degrees)
+
+			var torque_m_d =  Global.get_avg_torque(n).x    
+			var weight_rot_m_d = (torque_m_d - min_torque_m_d) / (max_torque_m_d - min_torque_m_d)
+			var D_rotation_m_d = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_d)
+			Needle_2.rotation_degrees = clamp(D_rotation_m_d, min_rotation_degrees, max_rotation_degrees)
 			
-			if Global.selectedQuadrant == 3:
-				var force_m_d = Global.get_avg_force(n).z
-				var weight_pos_m_d = (force_m_d - min_force_m_d) / (max_force_m_d - min_force_m_d)
-				var D_position_m_d = lerp(min_position_x, max_position_x, weight_pos_m_d)
-				Bar2.position.x = clamp(D_position_m_d, min_position_x, max_position_x)
-				
-				var torque_m_d = Global.get_avg_torque(n).x
-				var weight_rot_m_d = (torque_m_d - min_torque_m_d) / (max_torque_m_d - min_torque_m_d)
-				var D_rotation_m_d = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_d)
-				Needle_2.rotation_degrees = clamp(D_rotation_m_d, min_rotation_degrees, max_rotation_degrees)
-				
-				var torque_m_l = Global.get_avg_torque(n).y
-				var weight_rot_m_l = (torque_m_l - min_torque_m_l) / (max_torque_m_l - min_torque_m_l)
-				var D_rotation_m_l = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_l)
-				Needle_3.rotation_degrees = clamp(D_rotation_m_l, min_rotation_degrees, max_rotation_degrees)
-				
-			if Global.selectedQuadrant == 4:
-				var force_m_d = -Global.get_avg_force(n).z
-				var weight_pos_m_d = (force_m_d - min_force_m_d) / (max_force_m_d - min_force_m_d)
-				var D_position_m_d = lerp(min_position_x, max_position_x, weight_pos_m_d)
-				Bar2.position.x = clamp(D_position_m_d, min_position_x, max_position_x)
-				
-				var torque_m_d = -Global.get_avg_torque(n).x
-				var weight_rot_m_d = (torque_m_d - min_torque_m_d) / (max_torque_m_d - min_torque_m_d)
-				var D_rotation_m_d = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_d)
-				Needle_2.rotation_degrees = clamp(D_rotation_m_d, min_rotation_degrees, max_rotation_degrees)
-				
-				var torque_m_l = -Global.get_avg_torque(n).y
-				var weight_rot_m_l = (torque_m_l - min_torque_m_l) / (max_torque_m_l - min_torque_m_l)
-				var D_rotation_m_l = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_l)
-				Needle_3.rotation_degrees = clamp(D_rotation_m_l, min_rotation_degrees, max_rotation_degrees)
-
-		# Update the new bar slider based on force in x direction
-		var force_x = Global.get_avg_force(n).x
-		var weight_pos_x = (force_x - min_force_x) / (max_force_x - min_force_x)
-		var D_position_x = lerp(min_position_x, max_position_x, weight_pos_x)
-		barX.position.x = clamp(D_position_x, min_position_x, max_position_x)
+			var torque_m_l = Global.get_avg_torque(n).z   
+			var weight_rot_m_l = (torque_m_l - min_torque_m_l) / (max_torque_m_l - min_torque_m_l)
+			var D_rotation_m_l = lerp(min_rotation_degrees, max_rotation_degrees, weight_rot_m_l)
+			Needle_3.rotation_degrees = clamp(D_rotation_m_l, min_rotation_degrees, max_rotation_degrees)	
 			
-		# Update the new bar slider based on force in y direction
-		var force_y = Global.get_avg_force(n).y
-		var weight_pos_y = (force_y - min_force_y) / (max_force_y - min_force_y)
-		var D_position_y = lerp(min_position_x, max_position_x, weight_pos_y)
-		barY.position.x = clamp(D_position_y, min_position_x, max_position_x)
+			var force_x = Global.get_avg_force(n).x
+			var weight_pos_x = (force_x - min_force_x) / (max_force_x - min_force_x)
+			var D_position_x = lerp(min_position_x, max_position_x, weight_pos_x)
+			barX.position.x = clamp(D_position_x, min_position_x, max_position_x)
 
-		# Update the new bar slider based on force in z direction
-		var force_z = Global.get_avg_force(n).z
-		var weight_pos_z = (force_z - min_force_z) / (max_force_z - min_force_z)
-		var D_position_z = lerp(min_position_x, max_position_x, weight_pos_z)
-		barZ.position.x = clamp(D_position_z, min_position_x, max_position_x)
-
+			var force_y =  Global.get_avg_force(n).y
+			var weight_pos_y = (force_y - min_force_y) / (max_force_y - min_force_y)
+			var D_position_y = lerp(min_position_x, max_position_x, weight_pos_y)
+			barY.position.x = clamp(D_position_y, min_position_x, max_position_x)
+			
+			# Update the new bar slider based on force in z direction
+			var force_z = Global.get_avg_force(n).z
+			var weight_pos_z = (force_z - min_force_z) / (max_force_z - min_force_z)
+			var D_position_z = lerp(min_position_x, max_position_x, weight_pos_z)
+			barZ.position.x = clamp(D_position_z, min_position_x, max_position_x)
+		
+	
